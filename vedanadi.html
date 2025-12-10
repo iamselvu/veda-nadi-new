@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <title>ஸ்ரீமத் வேத நாடி</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html { font-size: .85em; } /* overall சிறிது குறைவு */
+
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: 'Noto Sans Tamil', Arial, sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #e3f2fd 0, #bbdefb 30%, #90caf9 60%, #64b5f6 100%);
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    /* முழு app-க்கு outer box */
+    .app-shell {
+      width: 100%;
+      max-width: 420px;
+      padding: 8px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));
+      box-shadow:
+        10px 10px 24px rgba(100,149,237,0.38),
+        -6px -6px 20px rgba(255,255,255,0.9);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+
+    .top-logo {
+      display: block;
+      width: 100px;
+      max-width: 40vw;
+      margin: 2px auto 6px auto;
+      border-radius: 16px;
+      box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.2),
+        0 0 0 2px rgba(255,255,255,0.6);
+    }
+
+    .title-bar {
+      max-width: 280px;
+      margin: 0 auto 8px auto;
+      padding: 7px 14px;
+      background: radial-gradient(circle at 0% 0%, #5c6bc0 0, #283593 40%, #4527a0 100%);
+      color: #fff;
+      border-radius: 999px;
+      box-shadow:
+        0 4px 12px rgba(40,53,147,0.5),
+        0 0 0 1px rgba(255,255,255,0.55);
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .title-icon {
+      font-size: 1rem;
+      filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));
+    }
+
+    .center-box {
+      width: 100%;
+      border-radius: 14px;
+      padding: 8px 8px 6px 8px;
+      box-sizing: border-box;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0.98)
+      );
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow:
+        8px 8px 18px rgba(120,144,156,0.32),
+        -6px -6px 16px rgba(255,255,255,0.9);
+    }
+
+    .section-label-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      font-size: .72rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #e8eaf6, #ede7f6);
+      color: #4527a0;
+      font-weight: 600;
+      margin: 0 auto 4px auto;
+      box-shadow:
+        1px 1px 4px rgba(144,164,174,0.7),
+        -1px -1px 4px rgba(255,255,255,0.95);
+    }
+
+    .input-group {
+      width: 100%;
+      margin-bottom: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    label {
+      color: #4a148c;
+      font-size: .8rem;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 7px 9px;
+      font-size: .82rem;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      color: #283593;
+      background: #e3f2fd;
+      box-shadow:
+        2px 2px 6px rgba(144,164,174,0.8),
+        -2px -2px 6px rgba(255,255,255,0.95);
+      transition: box-shadow 0.2s, background 0.2s, transform 0.1s;
+      box-sizing: border-box;
+    }
+
+    input[type="number"]:focus {
+      background: #e8f0ff;
+      box-shadow:
+        1px 1px 4px rgba(120,144,156,0.9),
+        -1px -1px 4px rgba(255,255,255,0.95),
+        0 0 0 1px rgba(63,81,181,0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-neo {
+      display: block;
+      width: 100%;
+      padding: 7px 10px;
+      font-size: .82rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(145deg, #1e88e5, #8e24aa);
+      color: #fdfbff;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.35px;
+      box-shadow:
+        4px 4px 9px rgba(66, 165, 245, 0.7),
+        -3px -3px 8px rgba(255, 255, 255, 0.95);
+      transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-neo.secondary {
+      background: linear-gradient(145deg, #26c6da, #5c6bc0);
+    }
+
+    .btn-neo:active {
+      transform: translateY(1px);
+      box-shadow:
+        2px 2px 5px rgba(66, 165, 245, 0.7),
+        -2px -2px 5px rgba(255, 255, 255, 0.9),
+        inset 0 2px 4px rgba(0,0,0,0.18);
+      filter: brightness(0.97);
+    }
+
+    .divider {
+      margin: 4px 0 6px 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c5cae9, transparent);
+    }
+
+    .result-section {
+      background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f5f7ff
+      );
+      margin: 5px 0;
+      padding: 6px 8px 7px 8px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      border: 1px solid rgba(197,202,233,0.9);
+      font-size: .8rem;
+      line-height: 1.1rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      text-align: left;
+      box-shadow:
+        3px 3px 8px rgba(158, 171, 203, 0.7),
+        -3px -3px 8px rgba(255,255,255,0.95);
+    }
+
+    .result-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 3px;
+    }
+
+    .result-title {
+      color: #1a237e;
+      font-weight: 700;
+      font-size: .84rem;
+      letter-spacing:.04em;
+    }
+
+    .result-tag {
+      font-size: .7rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #e8eaf6;
+      color: #3949ab;
+      font-weight: 600;
+    }
+
+    .bold-red-underline {
+      color: #c62828;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .sub-label {
+      color: #6a1b9a;
+      font-size:.8rem;
+      font-weight:600;
+    }
+
+    .chip-inline {
+      display: inline-block;
+      padding: 1px 6px;
+      margin-top: 1px;
+      border-radius: 999px;
+      background: #ede7f6;
+      font-size: .76rem;
+      color: #4a148c;
+    }
+
+    .info-section {
+      margin: 8px 0 2px 0;
+      background: linear-gradient(135deg, #e8eaf6, #f3e5f5);
+      color: #4527a0;
+      border-radius: 10px;
+      box-shadow:
+        3px 3px 8px rgba(120, 144, 156, 0.55),
+        -3px -3px 8px rgba(255,255,255,0.95);
+      padding: 6px 8px;
+      font-size: .78rem;
+      border: 1px solid rgba(197,202,233,0.9);
+      line-height: 1.1rem;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 540px) {
+      body { padding: 8px; }
+      .app-shell { max-width: 100%; }
+      .title-bar { font-size:.9rem; max-width: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <img src="https://i.ibb.co/RGvtC2C3/ganesh.jpg" alt="Logo" class="top-logo">
+
+    <div class="title-bar">
+      <span class="title-icon">🕉️</span>
+      <span>ஸ்ரீமத் வேத நாடி</span>
+    </div>
+
+    
+      <div class="input-group">
+        <button class="btn-neo" onclick="generateRandomNumber()">Random எண் (1–108)</button>
+        <label for="padamInput">அல்லது பாதம் எண் (1–108) உள்ளிடவும்</label>
+        <input type="number" id="padamInput" min="1" max="108" />
+        <button class="btn-neo secondary" onclick="showResult()">முடிவு காண்க</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="result"></div>
+
+      <div class="info-section">
+        இந்த நாடி பிரசன்ன முறை திருவருளினாலும் குருவருளினாலும் E. P.ரமேஷ் அவர்களால் உருவாக்கப்பட்டுள்ளது.<br>
+        மேலும் விவரங்களுக்கு <b>9344343360</b> என்ற எண்ணிற்கு அழையுங்கள்.
+      </div>
+    </div>
+  </div>
+
+<script>
+const nakshatras = [
+  ["அசுவினி","கேது"], ["பரனி","சுக்ரன்"], ["கிருத்திகை","சூரியன்"], ["ரோகிணி","சந்திரன்"], ["மிருகசீரிடம்","செவ்வாய்"], ["ஆருத்ரா","ராகு"], ["புனர்பூசம்","குரு"],
+  ["பூசம்","சனி"], ["ஆயில்யம்","புதன்"], ["மகம்","கேது"], ["பூரம்","சுக்ரன்"], ["உத்திரம்","சூரியன்"], ["ஹஸ்தம்","சந்திரன்"], ["சித்திரை","செவ்வாய்"],
+  ["சுவாதி","ராகு"], ["விஷாகம்","குரு"], ["அனுஷம்","சனி"], ["கேட்டை","புதன்"], ["மூலம்","கேது"], ["பூராடம்","சுக்ரன்"], ["உத்திராடம்","சூரியன்"],
+  ["திருவோணம்","சந்திரன்"], ["அவிட்டம்","செவ்வாய்"], ["சதயம்","ராகு"], ["பூரட்டாதி","குரு"], ["உத்திரட்டாதி","சனி"], ["ரேவதி","புதன்"]
+];
+
+const rashis = [
+  ["மேஷம்", "செவ்வாய்"], ["ரிஷபம்", "சுக்ரன்"], ["மிதுனம்", "புதன்"], ["கடகம்", "சந்திரன்"], ["சிம்மம்", "சூரியன்"],
+  ["கன்னி", "புதன்"], ["துலாம்", "சுக்ரன்"], ["விருச்சகம்", "செவ்வாய்"], ["தனுசு", "குரு"], ["மகரம்", "சனி"],
+  ["கும்பம்", "சனி"], ["மீனம்", "குரு"]
+];
+
+function generateRandomNumber() {
+  const random = Math.floor(Math.random() * 108) + 1;
+  document.getElementById('padamInput').value = random;
+  showResult();
+}
+
+function showResult() {
+  let padam = parseInt(document.getElementById('padamInput').value);
+  if (isNaN(padam) || padam < 1 || padam > 108) {
+    document.getElementById('result').innerHTML =
+      "<div class='result-section'><span style='color:red'>சரியான பாதம் எண் (1–108) உள்ளிடவும்.</span></div>";
+    return;
+  }
+
+  const nakIdx = Math.floor((padam - 1) / 4);
+  const nakName = nakshatras[nakIdx][0];
+  const nakLord = nakshatras[nakIdx][1];
+
+  const pada = ((padam - 1) % 4) + 1;
+
+  const rashiIdx = Math.floor((padam - 1) / 9);
+  const rashiName = rashis[rashiIdx][0];
+  const rashiLord = rashis[rashiIdx][1];
+
+  const navamsaIdx = (padam - 1) % 12;
+  const navamsaRashi = rashis[navamsaIdx][0];
+  const navamsaRashiLord = rashis[navamsaIdx][1];
+
+  const rashi_3_idx = (rashiIdx + 2) % 12;
+  const rashi_3_name = rashis[rashi_3_idx][0];
+  const rashi_3_lord = rashis[rashi_3_idx][1];
+
+  const rashi_11_idx = (rashiIdx + 10) % 12;
+  const rashi_11_name = rashis[rashi_11_idx][0];
+  const rashi_11_lord = rashis[rashi_11_idx][1];
+
+  let cholipBalance = padam % 12;
+  if (cholipBalance === 0) {
+    cholipBalance = 12;
+  }
+
+  const htmlUser = `
+    <div class="result-section">
+      <div class="result-title-row">
+        <div class="result-title">பிரசன்னச் சக்கரம்</div>
+        <span class="result-tag">லக்னம்</span>
+      </div>
+      <span class="sub-label">பிரசன்ன லக்னம்:</span>
+      <span class="chip-inline">${rashiName} (${rashiLord})</span><br>
+      <span class="sub-label">பாதம் எண்:</span> ${padam}<br>
+      <span class="sub-label">நட்சத்திரம்:</span> ${nakName} (${nakLord})<br>
+      <span class="sub-label">நட்சத்திர பாதம்:</span> ${pada}<br>
+    </div>
+  `;
+
+  const htmlNavamsa = `
+    <div class="result-section">
+      <div class="result-title-row">
+        <div class="result-title">நவாம்ச அமைப்பு</div>
+        <span class="result-tag">நவாம்சம்</span>
+      </div>
+      நவாம்ச லக்னம்: <span class="chip-inline">${navamsaRashi} (${navamsaRashiLord})</span>
+    </div>
+  `;
+
+  const htmlRashi = `
+    <div class="result-section">
+      <div class="result-title-row">
+        <div class="result-title">பிரசன்ன வழிகாட்டிகள்</div>
+        <span class="result-tag">3 & 11</span>
+      </div>
+      3 வது ராசி: ${rashi_3_name}
+      (<span class="bold-red-underline">${rashi_3_lord}</span>)<br>
+      11 வது ராசி: ${rashi_11_name}
+      (<span class="bold-red-underline">${rashi_11_lord}</span>)
+    </div>
+  `;
+
+  const htmlCholip = `
+    <div class="result-section">
+      <div class="result-title-row">
+        <div class="result-title">சோழிப் பிரசன்னம்</div>
+        <span class="result-tag">சோழி</span>
+      </div>
+      சோழிப் பிரசன்னம் எண்:
+      <span class="chip-inline">${cholipBalance}</span>
+    </div>
+  `;
+
+  document.getElementById('result').innerHTML =
+    htmlUser + htmlNavamsa + htmlRashi + htmlCholip;
+}
+</script>
+</body>
+</html>
